@@ -13,22 +13,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function listUser(){
-        $user = new User();
-        $user->name = 'Franciele';
-        $user->email = 'franciele@gmail.com';
-        $user->password = Hash::make('G1$tjhu');
-        $user->save();
-
-        // echo "<h1>Listagem de Usuário</h1>";
-
-        // $user = User::where('id', 1)->first();
-        // dd($user);
-        // return view('list-user', [
-        //     'user' => $user
-        // ]);
-    }
-
     public function index()
     {
         $users = User::all();
