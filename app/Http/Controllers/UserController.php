@@ -57,11 +57,18 @@ class UserController extends Controller
     {
         $user = new User();
         $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+
+        if(filter_var($request->email, FILTER_VALIDATE_EMAIL)){
+            $user->email = $request->email;
+        }
+
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+
         $user->save();
 
-        return redirect()->route('user.listAll');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -84,7 +91,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('/users/edit/', [
+        return view('/users/edit', [
             'user' => $user
         ]);
     }
@@ -96,9 +103,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        
+        $user->name = $request->name;
+
+        if(filter_var($request->email, FILTER_VALIDATE_EMAIL)){
+            $user->email = $request->email;
+        }
+
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('users.index');
     }
 
     /**

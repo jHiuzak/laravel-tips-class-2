@@ -22,4 +22,7 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
 
+// patch and put do the same things, but there are conventions
 Route::put('/users/update/{user}', [UserController::class, 'update'])->name('users.update');
+
+Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');

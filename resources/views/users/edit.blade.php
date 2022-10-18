@@ -10,9 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </head>
   <body>
-    <h1>New user</h1>
-    <form class="form-horizontal" action="{{ route('users.update', [$user->id]) }}" method="patch">
+    <h1>Edit user</h1>
+    <form class="form-horizontal" action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
         @csrf
+        @method('PUT') {{-- Helper for form spoofing --}}
 
         <div class="form-group">
             <label class="control-label col-sm-2" for="name">Name:</label>
