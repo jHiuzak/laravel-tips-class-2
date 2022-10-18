@@ -31,8 +31,17 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         {{-- <button type="button" class="btn btn-xs btn-primary"><a href="{{ url('/users', $user) }}">Ver</a></button> --}}
-                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.show', [$user]) }}">See</a></button>
-                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.edit', [$user]) }}">Edit</a></button>
+                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.show', [$user->id]) }}">See</a></button>
+                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.edit', [$user->id]) }}">Edit</a></button>
+
+                                        {{-- Destroying has to be ran into a form, not from link directly --}}
+                                        <form action="{{ route('users.destroy', [$user->id]) }}" method="post">
+                                            @csrf
+                                            @method("DELETE")
+
+                                            <input name="user" type="hidden" value="{{ $user->id }}"/>
+                                            <button type="submit" class="btn btn-xs btn-primary">Remove</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
