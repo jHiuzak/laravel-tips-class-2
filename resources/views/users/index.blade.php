@@ -30,9 +30,9 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ url('/users', $user) }}">Ver</a></button>
-                                        {{-- <button type="button" class="btn btn-xs btn-primary" action="{{ url('users.list', ['user' => $user]) }}"></button> --}}
-
+                                        {{-- <button type="button" class="btn btn-xs btn-primary"><a href="{{ url('/users', $user) }}">Ver</a></button> --}}
+                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.show', [$user]) }}">See</a></button>
+                                        <button type="button" class="btn btn-xs btn-primary"><a href="{{ route('users.edit', [$user]) }}">Edit</a></button>
                                     </td>
                                 </tr>
                             @endforeach
